@@ -6,6 +6,7 @@
   "license": "MIT",
   "devDependencies": {
     "@hesto2/config": "^0.0.28",
+    "@types/jest": "^25.2.3",
     "cross-env": "^7.0.2",
     "eslint": "^7.1.0",
     "husky": "^4.2.5",
@@ -33,6 +34,9 @@
   "dependencies": {
     "@types/aws-lambda": "^8.10.51",
     "aws-sdk": "^2.684.0",
-    "axios": "^0.19.2"
+    "axios": "^0.19.2",
+    "date-fns": "^2.14.0",
+    "dotenv": "^8.2.0",
+    "owlet-client": "^0.0.1"
   }
 }
