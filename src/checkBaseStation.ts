@@ -14,7 +14,7 @@ const checkBaseStation = async () => {
     const devices = await getDevices(token);
     const sock = await getDeviceAsSmartSock(devices[0].device.dsn, token);
     console.log('got sock');
-    if (sock.chargeStatus === 0 && sock.baseStationOn !== true) {
+    if (sock.chargeStatus === 0 && (sock.baseStationOn as any) !== 1) {
       console.log('turning on base station');
       await setBaseStationOn(true, sock, token);
       await axios.post(notificationUrl, {
