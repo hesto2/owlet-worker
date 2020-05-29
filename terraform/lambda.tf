@@ -6,7 +6,7 @@ module "timed_lambda" {
     NODE_ENV = "production"
     OWLET_EMAIL= "${data.aws_secretsmanager_secret_version.owlet_email.secret_string}"
     OWLET_PASSWORD= "${data.aws_secretsmanager_secret_version.owlet_password.secret_string}"
-    NOTIFICATION_SERVICE_URL = "${data.aws_secretsmanager_secret_version.notification_url.secret_string}/api/slack"
+    NOTIFICATION_URL = "${data.aws_secretsmanager_secret_version.notification_url.secret_string}/api/slack"
     S3_BUCKET_NAME = "${aws_s3_bucket.owlet_cache.id}"
   }
 }
