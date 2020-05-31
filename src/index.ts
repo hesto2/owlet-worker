@@ -4,6 +4,7 @@ import getConfig from './getConfig';
 import { SNSMessageAttributes, Actions } from './types';
 import snooze from './snooze';
 import { isAfter } from 'date-fns';
+
 export const handler = async (
   event: ScheduledEvent | SNSEvent,
   _context: Context
@@ -22,9 +23,11 @@ export const handler = async (
     }
   } else {
     console.log((event as SNSEvent).Records?.[0].Sns);
+
     const messageAttributes: SNSMessageAttributes = (event as SNSEvent)
       .Records[0].Sns.MessageAttributes as any;
-    if (messageAttributes.action.Value === Actions.SNOOZE)
+    if (messageAttributes.action.Value === Actions.SNOOZE) {
       await snooze(parseInt(messageAttributes.value.Value), config);
+    }
   }
 };

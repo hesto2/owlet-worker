@@ -1,7 +1,7 @@
 module "timed_lambda" {
   source   = "./node_modules/hesto2-terraform-modules/timed_lambda"
   app_name = "owlet-worker"
-  schedule_expression = "rate(15 minutes)"
+  schedule_expression = "rate(24 hours)"
   lambda_environment_variables = {
     NODE_ENV = "production"
     OWLET_EMAIL= "${data.aws_secretsmanager_secret_version.owlet_email.secret_string}"
