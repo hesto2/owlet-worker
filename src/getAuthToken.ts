@@ -1,38 +1,29 @@
-import AWS from 'aws-sdk';
 import { login } from 'owlet-client';
 import { isAfter, subHours } from 'date-fns';
-const s3 = new AWS.S3();
-const keyName = 'token.txt';
-const bucketName = process.env.S3_BUCKET_NAME;
+import { Config, persistConfig } from './getConfig';
 
-const persistToken = async (token: string) => {
-  await s3
-    .putObject({ Bucket: bucketName, Key: keyName, Body: token })
-    .promise();
+const persistToken = async (token: string, config: Config) => {
+  await persistConfig({ ...config, token, tokenDate: new Date().getTime() });
 };
 
-const getAuthToken = async (): Promise<string> => {
-  // If we are reading from s3 then find the cached token, if it is more than 23 hours old, refresh it
-  if (bucketName) {
+const getAuthToken = async (config: Config): Promise<string> => {
+  if (config.token && config.tokenDate) {
     try {
-      const result = await s3
-        .getObject({ Bucket: bucketName, Key: keyName })
-        .promise();
-
-      const tokenTime = result.LastModified;
+      const tokenTime = new Date(config.tokenDate);
 
       if (isAfter(tokenTime, subHours(new Date(), 23))) {
-        return result.Body.toString();
+        return config.token;
       }
     } catch (err) {
       console.log(err);
     }
   }
 
+  console.log('logging in');
   const token = await login();
-  if (bucketName) {
+  if (process.env.S3_BUCKET_NAME) {
     try {
-      await persistToken(token);
+      await persistToken(token, config);
     } catch (err) {
       console.log(err);
     }

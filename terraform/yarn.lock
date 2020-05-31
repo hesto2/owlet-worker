@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-hesto2-terraform-modules@^0.0.9:
-  version "0.0.9"
-  resolved "https://registry.yarnpkg.com/hesto2-terraform-modules/-/hesto2-terraform-modules-0.0.9.tgz#6c361b00c31af79e3bd35f4fa5f5d6b42efc6619"
-  integrity sha512-j3x+c5FEc20dIKMhU36MZgLIiHE0+fnAVzilTOwVNADUna7lTYrNVyRV4Y6SlcNE7BrLz73ZF2cF8sAt+oIemw==
+hesto2-terraform-modules@^0.0.12:
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/hesto2-terraform-modules/-/hesto2-terraform-modules-0.0.12.tgz#6cd629d724fcd3daf926f70451b7adfe2fe19d72"
+  integrity sha512-gX+SmAYwgicePQ5I8+l5RBsaD83l+P1IXIfh+EbCLsF6u9OAWxYWckE7+8LJYlVeKXyQX4DpRnTLl1BT0OE7uA==
