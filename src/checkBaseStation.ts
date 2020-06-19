@@ -6,6 +6,7 @@ import {
 import axios from 'axios';
 import getAuthToken from './getAuthToken';
 import { Config } from './getConfig';
+import snooze from './snooze';
 const notificationUrl = process.env.NOTIFICATION_URL;
 
 const checkBaseStation = async (config: Config) => {
@@ -19,6 +20,7 @@ const checkBaseStation = async (config: Config) => {
       true
     ) {
       await setBaseStationOn(true, sock, token);
+      await snooze(180, config);
       const messageResult = await axios.post(notificationUrl, {
         channel: 'mini-teammate',
         message: `Turned on the base station automatically`,
@@ -26,9 +28,9 @@ const checkBaseStation = async (config: Config) => {
           senderId: 'owlet-worker',
           actionId: 'snooze',
           actions: [
-            { value: '60', displayValue: '1 Hour' },
-            { value: '120', displayValue: '2 Hours' },
-            { value: '180', displayValue: '3 Hours' },
+            { value: '610', displayValue: '6 Hours' },
+            { value: '1220', displayValue: '12 Hours' },
+            { value: '1440', displayValue: '24 Hours' },
           ],
         },
       });
