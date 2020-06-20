@@ -15,13 +15,10 @@ const checkBaseStation = async (config: Config) => {
     const token = await getAuthToken(config);
     const devices = await getDevices(token);
     const sock = await getDeviceAsSmartSock(devices[0].device.dsn, token);
-    if (
-      (sock.chargeStatus === 0 && (sock.baseStationOn as any) !== 1) ||
-      true
-    ) {
+    if (sock.chargeStatus === 0 && (sock.baseStationOn as any) !== 1) {
       await setBaseStationOn(true, sock, token);
       await snooze(180, config);
-      const messageResult = await axios.post(notificationUrl, {
+      await axios.post(notificationUrl, {
         channel: 'mini-teammate',
         message: `Turned on the base station automatically`,
         actions: {
@@ -34,7 +31,6 @@ const checkBaseStation = async (config: Config) => {
           ],
         },
       });
-      console.log(messageResult);
     }
   } catch (err) {
     console.error(err?.response?.data?.data || err);

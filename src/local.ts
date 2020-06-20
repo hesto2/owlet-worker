@@ -1,5 +1,7 @@
 require('dotenv').config();
 import { handler } from './index';
+import getConfig from './getConfig';
+import checkBaseStation from './checkBaseStation';
 const testEvent = {
   source: 'aws.events',
   Records: [
@@ -15,4 +17,9 @@ const testEvent = {
   ],
 };
 
-(handler as any)(testEvent);
+const test = async () => {
+  const config = await getConfig();
+  await checkBaseStation(config);
+};
+test();
+// (handler as any)(testEvent);
