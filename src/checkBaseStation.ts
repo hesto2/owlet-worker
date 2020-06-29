@@ -8,6 +8,7 @@ import getAuthToken from './getAuthToken';
 import { Config } from './getConfig';
 import snooze from './snooze';
 const notificationUrl = process.env.NOTIFICATION_URL;
+const TIME_TO_SNOOZE_AFTER_TURNING_ON = 120;
 
 const checkBaseStation = async (config: Config) => {
   console.log('checking base station');
@@ -17,7 +18,7 @@ const checkBaseStation = async (config: Config) => {
     const sock = await getDeviceAsSmartSock(devices[0].device.dsn, token);
     if (sock.chargeStatus === 0 && (sock.baseStationOn as any) !== 1) {
       await setBaseStationOn(true, sock, token);
-      await snooze(180, config);
+      await snooze(TIME_TO_SNOOZE_AFTER_TURNING_ON, config);
       await axios.post(notificationUrl, {
         channel: 'mini-teammate',
         message: `Turned on the base station automatically`,
