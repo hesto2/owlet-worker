@@ -20,15 +20,15 @@ const checkBaseStation = async (config: Config) => {
       await setBaseStationOn(true, sock, token);
       await snooze(TIME_TO_SNOOZE_AFTER_TURNING_ON, config);
       await axios.post(notificationUrl, {
-        channel: 'mini-teammate',
+        channel: process.env.TARGET_SLACK_CHANNEL,
         message: `Turned on the base station automatically`,
         actions: {
           senderId: 'owlet-worker',
           actionId: 'snooze',
           actions: [
+            { value: '305', displayValue: '3 Hours' },
             { value: '610', displayValue: '6 Hours' },
             { value: '1220', displayValue: '12 Hours' },
-            { value: '1440', displayValue: '24 Hours' },
           ],
         },
       });
