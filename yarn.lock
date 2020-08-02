@@ -3398,10 +3398,10 @@ os-tmpdir@~1.0.2:
   resolved "https://registry.yarnpkg.com/os-tmpdir/-/os-tmpdir-1.0.2.tgz#bbe67406c79aa85c5cfec766fe5734555dfa1274"
   integrity sha1-u+Z0BseaqFxc/sdm/lc0VV36EnQ=
 
-owlet-client@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/owlet-client/-/owlet-client-0.0.2.tgz#22f8ba6558dd5db27694e917d6f3bea923b66d68"
-  integrity sha512-VvC9MSzgkkpZFFfXEVjVTI8Sp3sDKzncWkwEUYSdjtwd+Jy3hdyI5fCPCXskfhWp0LB3zGVINZG4sKoLvLTs3Q==
+owlet-client@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/owlet-client/-/owlet-client-0.0.3.tgz#ddf1ee4197b2f7a43b3e58e29a9d985cc190d9c4"
+  integrity sha512-As94e8gWvvMO0WpxEb4vu0RM5OV8xvvYFrKjd1NMfTfeShtEbzxQmsPNY1aRNZAOb4EAyb2N6C1W+vVs4uio6g==
   dependencies:
     axios "^0.19.2"
     dotenv "^8.2.0"

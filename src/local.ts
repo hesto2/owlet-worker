@@ -18,8 +18,12 @@ const testEvent = {
 };
 
 const test = async () => {
-  const config = await getConfig();
-  await checkBaseStation(config);
+  try {
+    const config = await getConfig();
+    await checkBaseStation(config);
+  } catch (err) {
+    console.error(err);
+  }
 };
 test();
 // (handler as any)(testEvent);
