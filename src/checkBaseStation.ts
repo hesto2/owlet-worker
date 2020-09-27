@@ -7,6 +7,7 @@ import axios from 'axios';
 import getAuthToken from './getAuthToken';
 import { Config } from './getConfig';
 import snooze from './snooze';
+import * as Sentry from '@sentry/node';
 const notificationUrl = process.env.NOTIFICATION_URL;
 const TIME_TO_SNOOZE_AFTER_TURNING_ON = 120;
 
@@ -34,6 +35,7 @@ const checkBaseStation = async (config: Config) => {
       });
     }
   } catch (err) {
+    Sentry.captureException(err);
     console.error(err?.response?.data?.data || err);
     if (notificationUrl) {
       await axios.post(notificationUrl, {

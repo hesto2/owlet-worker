@@ -4,11 +4,16 @@ import getConfig from './getConfig';
 import { SNSMessageAttributes, Actions } from './types';
 import snooze from './snooze';
 import { isAfter } from 'date-fns';
+import * as Sentry from '@sentry/node';
 
 export const handler = async (
   event: ScheduledEvent | SNSEvent,
   _context: Context
 ) => {
+  Sentry.init({
+    dsn:
+      'https://590bd1773d764983b2be6bfbd92faedf@o453466.ingest.sentry.io/5442814',
+  });
   const config = await getConfig();
   console.log('config', config);
   if ((event as ScheduledEvent)?.source === 'aws.events') {

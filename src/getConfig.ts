@@ -1,4 +1,5 @@
 import AWS from 'aws-sdk';
+import * as Sentry from '@sentry/node';
 const s3 = new AWS.S3();
 
 export interface Config {
@@ -30,6 +31,7 @@ const getConfig = async (): Promise<Config> => {
       const config = JSON.parse(result.Body.toString());
       return config;
     } catch (err) {
+      Sentry.captureException(err);
       console.log('failed to get config');
       console.log(err);
     }

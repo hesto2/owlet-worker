@@ -1,6 +1,7 @@
 import { login } from 'owlet-client';
 import { isAfter, subHours } from 'date-fns';
 import { Config, persistConfig } from './getConfig';
+import * as Sentry from '@sentry/node';
 
 const persistToken = async (token: string, config: Config) => {
   await persistConfig({ ...config, token, tokenDate: new Date().getTime() });
@@ -15,6 +16,7 @@ const getAuthToken = async (config: Config): Promise<string> => {
         return config.token;
       }
     } catch (err) {
+      Sentry.captureException(err);
       console.log(err);
     }
   }
@@ -25,6 +27,7 @@ const getAuthToken = async (config: Config): Promise<string> => {
     try {
       await persistToken(token, config);
     } catch (err) {
+      Sentry.captureException(err);
       console.log(err);
     }
   }
