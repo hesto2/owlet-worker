@@ -34,7 +34,7 @@
   "dependencies": {
     "@sentry/node": "^5.24.2",
     "@types/aws-lambda": "^8.10.51",
-    "aws-sdk": "^2.684.0",
+    "aws-sdk": "^2.814.0",
     "axios": "^0.19.2",
     "date-fns": "^2.14.0",
     "dotenv": "^8.2.0",
